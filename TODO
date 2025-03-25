@@ -1,10 +1,6 @@
-- look into content scale callback (macos) (X11)
- - BGR buffer macOS
+- fix macOS software rendering and include a BGR option 
 - RGFW_event unions (to save memory ?)
 - update wayland support
-- add `RGFW_window_initOpenGL(RGFW_area)` (or something like it), allowing optional seperation of createWindow and context creation
-- win32 transparancy for software rendering 
-- fix MacOS warnings
 
 - look into monitor gamma
 - set gamepad mappings
