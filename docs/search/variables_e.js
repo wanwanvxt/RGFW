@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['userptr_0',['userPtr',['../structRGFW__window.html#a79f693fa547bb7834c244172f5f026b9',1,'RGFW_window']]]
+  ['userptr_0',['userPtr',['../structRGFW__monitor.html#a6be8254832fb04be7da29c82691de97d',1,'RGFW_monitor']]]
 ];

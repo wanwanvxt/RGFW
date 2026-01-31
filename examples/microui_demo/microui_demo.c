@@ -1,8 +1,18 @@
 #undef _WIN32_WINNT
 #include <stdio.h>
 
+#define RGFW_DEBUG
+#define GL_SILENCE_DEPRECATION
+#define RGFW_OPENGL
 #define RGFW_IMPLEMENTATION
 #include "RGFW.h"
+
+#ifdef RGFW_MACOS
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
+
 #include "renderer.h"
 #include "microui.h"
 
@@ -13,7 +23,7 @@ static  char logbuf[64000];
 static   int logbuf_updated = 0;
 static float bg[3] = { 90, 95, 100 };
 
-  
+
 static void write_log(const char *text) {
   if (logbuf[0]) { strcat(logbuf, "\n"); }
   strcat(logbuf, text);
@@ -238,12 +248,25 @@ static int text_height(mu_Font font) {
 	return r_get_text_height();
 }
 
+static void update_viewport(int width, int height) {
+  GLsizei vw = (GLsizei)((float)width * pixelRatio);
+  GLsizei vh = (GLsizei)((float)height * pixelRatio);
+  glViewport(0, 0, vw, vh);
+  glScissor(0, 0, vw, vh);
+}
 
 int main(int argc, char **argv) {
   RGFW_UNUSED(argc); RGFW_UNUSED(argv);
   /* init RGFW window */
-  RGFW_window* window = RGFW_createWindow("", RGFW_RECT(0, 0, width, height), RGFW_windowCenter | RGFW_windowScaleToMonitor);
+  RGFW_window* window = RGFW_createWindow("", 0, 0, width, height, RGFW_windowCenter |  RGFW_windowOpenGL);
+
+  RGFW_monitor* mon = RGFW_window_getMonitor(window);
+  width = window->w;
+  height = window->h;
+  pixelRatio = mon->pixelRatio;
+
   r_init();
+  RGFW_window_setExitKey(window, RGFW_escape);
 
   /* init microui */
   mu_Context *ctx = (mu_Context*)malloc(sizeof(mu_Context));
@@ -251,39 +274,57 @@ int main(int argc, char **argv) {
   ctx->text_width = text_width;
   ctx->text_height = text_height;
 
+  update_viewport(width, height);
   /* main loop */
   while (RGFW_window_shouldClose(window) == RGFW_FALSE) {
     /* handle RGFW events */
-    while (RGFW_window_checkEvent(window)) {
-      if (window->event.type == RGFW_quit) break;
+    RGFW_event event;
+    while (RGFW_window_checkEvent(window, &event)) {
+      if (event.type == RGFW_quit) break;
 
-      switch (window->event.type) {
+      switch (event.type) {
         case RGFW_quit: break;
-        case RGFW_mousePosChanged: mu_input_mousemove(ctx, window->event.point.x,  window->event.point.y); break;
+        case RGFW_mousePosChanged: mu_input_mousemove(ctx, event.mouse.x,  event.mouse.y); break;
 
-        case RGFW_mouseButtonPressed:
-		  mu_input_scroll(ctx, 0, window->event.scroll * -30);
-		case RGFW_mouseButtonReleased: {
-          int b = button_map[window->event.button & 0xff];
-          if (b && window->event.type == RGFW_mouseButtonPressed) { mu_input_mousedown(ctx, window->event.point.x,  window->event.point.y , b); }
-          if (b && window->event.type == RGFW_mouseButtonReleased) { mu_input_mouseup(ctx, window->event.point.x,  window->event.point.y, b);   }
+		case RGFW_mouseScroll:
+			mu_input_scroll(ctx, event.scroll.x, event.scroll.y);
+			break;
+        case RGFW_mouseButtonPressed: {
+		  i32 x, y;
+		  RGFW_window_getMouse(window, &x, &y);
+
+          int b = button_map[event.button.value & 0xff];
+		  if (b) mu_input_mousedown(ctx, x, y, b);
+		  break;
+	   }
+	   case RGFW_mouseButtonReleased: {
+		  i32 x, y;
+		  RGFW_window_getMouse(window, &x, &y);
+          int b = button_map[event.button.value & 0xff];
+          if (b) { mu_input_mouseup(ctx, x, y, b);   }
           break;
         }
-		
-        case RGFW_keyPressed: {
-		  char str[2] = {(char)window->event.keyChar, '\0'};
-		  mu_input_text(ctx, str);
+
+        case RGFW_keyChar: {
+		  u32 str[2] = {(char)event.keyChar.value, '\0'};
+		  mu_input_text(ctx, (char*)str);
+		  break;
 	    }
+		case RGFW_keyPressed: {
+			int c = key_map[event.key.value & 0xff];
+			if (c) mu_input_keydown(ctx, c);
+			break;
+		}
 		case RGFW_keyReleased: {
-          int c = key_map[window->event.key & 0xff];
-          if (c && window->event.type == RGFW_keyPressed) { mu_input_keydown(ctx, c); }
-          if (c && window->event.type == RGFW_keyReleased) { mu_input_keyup(ctx, c);   }
+			int c = key_map[event.key.value & 0xff];
+			if (c) mu_input_keyup(ctx, c);
           break;
         }
-		
+
 		case RGFW_windowResized:
-		  width = window->r.w; 
-		  height = window->r.h;
+		  width = window->w;
+		  height = window->h;
+      update_viewport(width, height);
 		  break;
 	  }
     }
@@ -304,7 +345,7 @@ int main(int argc, char **argv) {
     }
 
     r_present();
-    RGFW_window_swapBuffers(window);
+    RGFW_window_swapBuffers_OpenGL(window);
   }
 
   return 0;

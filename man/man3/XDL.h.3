@@ -1,4 +1,4 @@
-.TH "XDL.h" 3 "Sat Mar 29 2025" "RGFW" \" -*- nroff -*-
+.TH "XDL.h" 3 "Sat Jan 31 2026" "RGFW" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,7 +23,7 @@ XDL.h
 
 .in +1c
 .ti -1c
-.RI "#define \fBXDLDEF\fP   \fBinline\fP"
+.RI "#define \fBXDLDEF\fP   inline"
 .br
 .ti -1c
 .RI "#define \fBXAllocClassHint\fP   \fBXAllocClassHintSrc\fP"
@@ -254,6 +254,9 @@ XDL.h
 .RI "#define \fBXSetSelectionOwner\fP   \fBXSetSelectionOwnerSrc\fP"
 .br
 .ti -1c
+.RI "#define \fBXGetWMHints\fP   \fBXGetWMHintsSrc\fP"
+.br
+.ti -1c
 .RI "#define \fBXSetWMHints\fP   \fBXSetWMHintsSrc\fP"
 .br
 .ti -1c
@@ -314,10 +317,25 @@ XDL.h
 .RI "#define \fBXkbKeycodeToKeysym\fP   \fBXkbKeycodeToKeysymSrc\fP"
 .br
 .ti -1c
+.RI "#define \fBXkbGetMap\fP   \fBXkbGetMapSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXkbGetNames\fP   \fBXkbGetNamesSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXkbGetKeyboardByName\fP   \fBXkbGetKeyboardByNameSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXkbFreeKeyboard\fP   \fBXkbFreeKeyboardSrc\fP"
+.br
+.ti -1c
 .RI "#define \fBXGetAtomName\fP   \fBXGetAtomNameSrc\fP"
 .br
 .ti -1c
 .RI "#define \fBXDefaultRootWindow\fP   \fBXDefaultRootWindowSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXDefaultScreen\fP   \fBXDefaultScreenSrc\fP"
 .br
 .ti -1c
 .RI "#define \fBXMatchVisualInfo\fP   \fBXMatchVisualInfoSrc\fP"
@@ -362,6 +380,30 @@ XDL.h
 .RI "#define \fBXPutImage\fP   \fBXPutImageSrc\fP"
 .br
 .ti -1c
+.RI "#define \fBXClearWindow\fP   \fBXClearWindowSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXSetWindowBackground\fP   \fBXSetWindowBackgroundSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXrmUniqueQuark\fP   \fBXrmUniqueQuarkSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXSetWindowBackgroundPixmap\fP   \fBXSetWindowBackgroundPixmapSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXOpenIM\fP   \fBXOpenIMSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXutf8LookupString\fP   \fBXutf8LookupStringSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXUnregisterIMInstantiateCallback\fP   \fBXUnregisterIMInstantiateCallbackSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXutf8SetWMProperties\fP   \fBXutf8SetWMPropertiesSrc\fP"
+.br
+.ti -1c
 .RI "#define \fBXRRGetScreenResourcesCurrent\fP   \fBXRRGetScreenResourcesCurrentSrc\fP"
 .br
 .ti -1c
@@ -378,6 +420,54 @@ XDL.h
 .br
 .ti -1c
 .RI "#define \fBXRRFreeScreenResources\fP   \fBXRRFreeScreenResourcesSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRFreeOutputInfo\fP   \fBXRRFreeOutputInfoSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRSetScreenConfig\fP   \fBXRRSetScreenConfigSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRSetCrtcConfig\fP   \fBXRRSetCrtcConfigSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRConfigCurrentRate\fP   \fBXRRConfigCurrentRateSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRGetScreenInfo\fP   \fBXRRGetScreenInfoSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRFreeScreenConfigInfo\fP   \fBXRRFreeScreenConfigInfoSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRFreeScreenConfigInfo\fP   \fBXRRFreeScreenConfigInfoSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRGetOutputPrimary\fP   \fBXRRGetOutputPrimarySrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRAllocGamma\fP   \fBXRRAllocGammaSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRQueryVersion\fP   \fBXRRQueryVersionSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRSelectInput\fP   \fBXRRSelectInputSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRQueryExtension\fP   \fBXRRQueryExtensionSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRSetCrtcGamma\fP   \fBXRRSetCrtcGammaSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRGetCrtcGammaSize\fP   \fBXRRGetCrtcGammaSizeSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRGetCrtcGamma\fP   \fBXRRGetCrtcGammaSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBXRRFreeGamma\fP   \fBXRRFreeGammaSrc\fP"
 .br
 .ti -1c
 .RI "#define \fBglXChooseVisual\fP   \fBglXChooseVisualSrc\fP"
@@ -414,6 +504,15 @@ XDL.h
 .br
 .ti -1c
 .RI "#define \fBglXSwapIntervalEXT\fP   \fBglXSwapIntervalEXTSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBglXQueryExtensionsString\fP   \fBglXQueryExtensionsStringSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBglXCreateWindow\fP   \fBglXCreateWindowSrc\fP"
+.br
+.ti -1c
+.RI "#define \fBglXDestroyWindow\fP   \fBglXDestroyWindowSrc\fP"
 .br
 .in -1c
 .SS "Typedefs"
@@ -636,6 +735,9 @@ XDL.h
 .RI "typedef int(* \fBPFN_XSetSelectionOwner\fP) (Display *, Atom, Window, Time)"
 .br
 .ti -1c
+.RI "typedef XWMHints *(* \fBPFN_XGetWMHints\fP) (Display *, Window)"
+.br
+.ti -1c
 .RI "typedef int(* \fBPFN_XSetWMHints\fP) (Display *, Window, XWMHints *)"
 .br
 .ti -1c
@@ -681,6 +783,9 @@ XDL.h
 .RI "typedef XkbDescPtr(* \fBPFN_XkbGetMap\fP) (Display *, unsigned int, unsigned int)"
 .br
 .ti -1c
+.RI "typedef XkbDescPtr(* \fBPFN_XkbGetKeyboardByName\fP) (Display *, unsigned int, XkbComponentNamesPtr, unsigned int, unsigned int, Bool)"
+.br
+.ti -1c
 .RI "typedef Status(* \fBPFN_XkbGetNames\fP) (Display *, unsigned int, XkbDescPtr)"
 .br
 .ti -1c
@@ -724,6 +829,9 @@ XDL.h
 .br
 .ti -1c
 .RI "typedef Window(* \fBPFN_XDefaultRootWindow\fP) (Display *)"
+.br
+.ti -1c
+.RI "typedef int(* \fBPFN_XDefaultScreen\fP) (Display *)"
 .br
 .ti -1c
 .RI "typedef int(* \fBPFN_XQueryKeymap\fP) (Display *, char[32])"
@@ -777,6 +885,30 @@ XDL.h
 .RI "typedef int(* \fBPFN_XPutImage\fP) (Display *display, Drawable d, GC gc, XImage *image, int src_x, int src_y, int dest_x, int dest_y, unsigned int width, unsigned int height)"
 .br
 .ti -1c
+.RI "typedef void(* \fBPFN_XSetWindowBackground\fP) (Display *, Window, unsigned long)"
+.br
+.ti -1c
+.RI "typedef int(* \fBPFN_XClearWindow\fP) (Display *, Window)"
+.br
+.ti -1c
+.RI "typedef XrmQuark(* \fBPFN_XrmUniqueQuark\fP) (void)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_XSetWindowBackgroundPixmap\fP) (Display *, Window, Pixmap)"
+.br
+.ti -1c
+.RI "typedef XIM(* \fBPFN_XOpenIM\fP) (Display *, XrmDatabase *, char *, char *)"
+.br
+.ti -1c
+.RI "typedef int(* \fBPFN_Xutf8LookupString\fP) (XIC, XKeyPressedEvent *, char *, int, KeySym *, Status *)"
+.br
+.ti -1c
+.RI "typedef Bool(* \fBPFN_XUnregisterIMInstantiateCallback\fP) (Display *, void *, char *, char *, XIDProc, XPointer)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_Xutf8SetWMProperties\fP) (Display *, Window, const char *, const char *, char **, int, XSizeHints *, XWMHints *, XClassHint *)"
+.br
+.ti -1c
 .RI "typedef XRRScreenResources *(* \fBPFN_XRRGetScreenResourcesCurrent\fP) (Display *display, Window window)"
 .br
 .ti -1c
@@ -793,6 +925,54 @@ XDL.h
 .br
 .ti -1c
 .RI "typedef void(* \fBPFN_XRRFreeScreenResources\fP) (XRRScreenResources *resources)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_XRRFreeOutputInfo\fP) (XRROutputInfo *)"
+.br
+.ti -1c
+.RI "typedef Status(* \fBPFN_XRRSetScreenConfig\fP) (Display *dpy, XRRScreenConfiguration *config, Drawable draw, int size_index, Rotation rotation, Time timestamp)"
+.br
+.ti -1c
+.RI "typedef Status(* \fBPFN_XRRSetCrtcConfig\fP) (Display *, XRRScreenResources *, RRCrtc, Time, int, int, RRMode, Rotation, RROutput *, int)"
+.br
+.ti -1c
+.RI "typedef short(* \fBPFN_XRRConfigCurrentRate\fP) (XRRScreenConfiguration *)"
+.br
+.ti -1c
+.RI "typedef XRRScreenConfiguration *(* \fBPFN_XRRGetScreenInfo\fP) (Display *, Window)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_XRRFreeScreenConfigInfo\fP) (XRRScreenConfiguration *)"
+.br
+.ti -1c
+.RI "typedef RROutput(* \fBPFN_XRRGetOutputPrimary\fP) (Display *, Window)"
+.br
+.ti -1c
+.RI "typedef XRRCrtcGamma *(* \fBPFN_XRRAllocGamma\fP) (int)"
+.br
+.ti -1c
+.RI "typedef Bool(* \fBPFN_XRRQueryExtension\fP) (Display *, int *, int *)"
+.br
+.ti -1c
+.RI "typedef Status(* \fBPFN_XRRQueryVersion\fP) (Display *, int *, int *)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_XRRSelectInput\fP) (Display *, Window, int)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_XRRSetCrtcGamma\fP) (Display *, RRCrtc, XRRCrtcGamma *)"
+.br
+.ti -1c
+.RI "typedef int(* \fBPFN_XRRGetCrtcGammaSize\fP) (Display *, RRCrtc)"
+.br
+.ti -1c
+.RI "typedef XRRCrtcGamma *(* \fBPFN_XRRGetCrtcGamma\fP) (Display *, RRCrtc)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_XRRFreeGamma\fP) (XRRCrtcGamma *)"
+.br
+.ti -1c
+.RI "typedef const char *(* \fBPFN_glXQueryExtensionsString\fP) (Display *dpy, int screen)"
 .br
 .ti -1c
 .RI "typedef XVisualInfo *(* \fBPFN_glXChooseVisual\fP) (Display *, int, int *)"
@@ -813,7 +993,7 @@ XDL.h
 .RI "typedef PFNGLXSWAPINTERVALEXTPROC \fBPFN_glXSwapIntervalEXT\fP"
 .br
 .ti -1c
-.RI "typedef void *(* \fBPFN_glXGetProcAddress\fP) (const GLubyte *procname)"
+.RI "typedef __GLXextFuncPtr(* \fBPFN_glXGetProcAddress\fP) (const GLubyte *procname)"
 .br
 .ti -1c
 .RI "typedef PFNGLXGETVISUALFROMFBCONFIGPROC \fBPFN_glXGetVisualFromFBConfig\fP"
@@ -829,6 +1009,12 @@ XDL.h
 .br
 .ti -1c
 .RI "typedef void(* \fBPFN_glXDestroyContext\fP) (Display *dpy, GLXContext ctx)"
+.br
+.ti -1c
+.RI "typedef GLXWindow(* \fBPFN_glXCreateWindow\fP) (Display *, GLXFBConfig, Window, const int *)"
+.br
+.ti -1c
+.RI "typedef void(* \fBPFN_glXDestroyWindow\fP) (Display *, GLXWindow)"
 .br
 .in -1c
 .SS "Functions"
@@ -1055,6 +1241,9 @@ XDL.h
 .RI "\fBPFN_XSetSelectionOwner\fP \fBXSetSelectionOwnerSrc\fP"
 .br
 .ti -1c
+.RI "\fBPFN_XGetWMHints\fP \fBXGetWMHintsSrc\fP"
+.br
+.ti -1c
 .RI "\fBPFN_XSetWMHints\fP \fBXSetWMHintsSrc\fP"
 .br
 .ti -1c
@@ -1100,6 +1289,18 @@ XDL.h
 .RI "\fBPFN_XkbKeycodeToKeysym\fP \fBXkbKeycodeToKeysymSrc\fP"
 .br
 .ti -1c
+.RI "\fBPFN_XkbGetMap\fP \fBXkbGetMapSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XkbGetNames\fP \fBXkbGetNamesSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XkbGetKeyboardByName\fP \fBXkbGetKeyboardByNameSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XkbFreeKeyboard\fP \fBXkbFreeKeyboardSrc\fP"
+.br
+.ti -1c
 .RI "\fBPFN_XStringToKeysym\fP \fBXStringToKeysymSrc\fP"
 .br
 .ti -1c
@@ -1125,6 +1326,9 @@ XDL.h
 .br
 .ti -1c
 .RI "\fBPFN_XDefaultRootWindow\fP \fBXDefaultRootWindowSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XDefaultScreen\fP \fBXDefaultScreenSrc\fP"
 .br
 .ti -1c
 .RI "\fBPFN_XQueryKeymap\fP \fBXQueryKeymapSrc\fP"
@@ -1178,6 +1382,30 @@ XDL.h
 .RI "\fBPFN_XPutImage\fP \fBXPutImageSrc\fP"
 .br
 .ti -1c
+.RI "\fBPFN_XSetWindowBackground\fP \fBXSetWindowBackgroundSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XClearWindow\fP \fBXClearWindowSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XrmUniqueQuark\fP \fBXrmUniqueQuarkSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XSetWindowBackgroundPixmap\fP \fBXSetWindowBackgroundPixmapSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XOpenIM\fP \fBXOpenIMSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_Xutf8LookupString\fP \fBXutf8LookupStringSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XUnregisterIMInstantiateCallback\fP \fBXUnregisterIMInstantiateCallbackSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_Xutf8SetWMProperties\fP \fBXutf8SetWMPropertiesSrc\fP"
+.br
+.ti -1c
 .RI "\fBPFN_XRRGetScreenResourcesCurrent\fP \fBXRRGetScreenResourcesCurrentSrc\fP"
 .br
 .ti -1c
@@ -1194,6 +1422,51 @@ XDL.h
 .br
 .ti -1c
 .RI "\fBPFN_XRRFreeScreenResources\fP \fBXRRFreeScreenResourcesSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRFreeOutputInfo\fP \fBXRRFreeOutputInfoSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRSetScreenConfig\fP \fBXRRSetScreenConfigSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRSetCrtcConfig\fP \fBXRRSetCrtcConfigSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRGetScreenInfo\fP \fBXRRGetScreenInfoSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRConfigCurrentRate\fP \fBXRRConfigCurrentRateSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRFreeScreenConfigInfo\fP \fBXRRFreeScreenConfigInfoSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRGetOutputPrimary\fP \fBXRRGetOutputPrimarySrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRAllocGamma\fP \fBXRRAllocGammaSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRQueryVersion\fP \fBXRRQueryVersionSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRQueryExtension\fP \fBXRRQueryExtensionSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRSelectInput\fP \fBXRRSelectInputSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRSetCrtcGamma\fP \fBXRRSetCrtcGammaSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRGetCrtcGammaSize\fP \fBXRRGetCrtcGammaSizeSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRGetCrtcGamma\fP \fBXRRGetCrtcGammaSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_XRRFreeGamma\fP \fBXRRFreeGammaSrc\fP"
 .br
 .ti -1c
 .RI "\fBPFN_glXChooseVisual\fP \fBglXChooseVisualSrc\fP"
@@ -1231,6 +1504,15 @@ XDL.h
 .ti -1c
 .RI "\fBPFN_glXDestroyContext\fP \fBglXDestroyContextSrc\fP"
 .br
+.ti -1c
+.RI "\fBPFN_glXQueryExtensionsString\fP \fBglXQueryExtensionsStringSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_glXCreateWindow\fP \fBglXCreateWindowSrc\fP"
+.br
+.ti -1c
+.RI "\fBPFN_glXDestroyWindow\fP \fBglXDestroyWindowSrc\fP"
+.br
 .in -1c
 .SH "Macro Definition Documentation"
 .PP 
@@ -1240,7 +1522,11 @@ XDL.h
 
 .SS "#define glXCreateContext   \fBglXCreateContextSrc\fP"
 
+.SS "#define glXCreateWindow   \fBglXCreateWindowSrc\fP"
+
 .SS "#define glXDestroyContext   \fBglXDestroyContextSrc\fP"
+
+.SS "#define glXDestroyWindow   \fBglXDestroyWindowSrc\fP"
 
 .SS "#define glXGetCurrentContext   \fBglXGetCurrentContextSrc\fP"
 
@@ -1253,6 +1539,8 @@ XDL.h
 .SS "#define glXGetVisualFromFBConfig   \fBglXGetVisualFromFBConfigSrc\fP"
 
 .SS "#define glXMakeCurrent   \fBglXMakeCurrentSrc\fP"
+
+.SS "#define glXQueryExtensionsString   \fBglXQueryExtensionsStringSrc\fP"
 
 .SS "#define glXSwapBuffers   \fBglXSwapBuffersSrc\fP"
 
@@ -1271,6 +1559,8 @@ XDL.h
 .SS "#define XCheckIfEvent   \fBXCheckIfEventSrc\fP"
 
 .SS "#define XCheckTypedWindowEvent   \fBXCheckTypedWindowEventSrc\fP"
+
+.SS "#define XClearWindow   \fBXClearWindowSrc\fP"
 
 .SS "#define XCloseDisplay   \fBXCloseDisplaySrc\fP"
 
@@ -1300,6 +1590,8 @@ XDL.h
 
 .SS "#define XDefaultRootWindow   \fBXDefaultRootWindowSrc\fP"
 
+.SS "#define XDefaultScreen   \fBXDefaultScreenSrc\fP"
+
 .SS "#define XDefineCursor   \fBXDefineCursorSrc\fP"
 
 .SS "#define XDeleteContext   \fBXDeleteContextSrc\fP"
@@ -1320,7 +1612,7 @@ XDL.h
 
 .SS "#define XDisplayWidth   \fBXDisplayWidthSrc\fP"
 
-.SS "#define XDLDEF   \fBinline\fP"
+.SS "#define XDLDEF   inline"
 
 .SS "#define XEventsQueued   \fBXEventsQueuedSrc\fP"
 
@@ -1368,6 +1660,8 @@ XDL.h
 
 .SS "#define XGetWindowProperty   \fBXGetWindowPropertySrc\fP"
 
+.SS "#define XGetWMHints   \fBXGetWMHintsSrc\fP"
+
 .SS "#define XGetWMNormalHints   \fBXGetWMNormalHintsSrc\fP"
 
 .SS "#define XGrabPointer   \fBXGrabPointerSrc\fP"
@@ -1379,6 +1673,14 @@ XDL.h
 .SS "#define XInitThreads   \fBXInitThreadsSrc\fP"
 
 .SS "#define XInternAtom   \fBXInternAtomSrc\fP"
+
+.SS "#define XkbFreeKeyboard   \fBXkbFreeKeyboardSrc\fP"
+
+.SS "#define XkbGetKeyboardByName   \fBXkbGetKeyboardByNameSrc\fP"
+
+.SS "#define XkbGetMap   \fBXkbGetMapSrc\fP"
+
+.SS "#define XkbGetNames   \fBXkbGetNamesSrc\fP"
 
 .SS "#define XkbGetState   \fBXkbGetStateSrc\fP"
 
@@ -1403,6 +1705,8 @@ XDL.h
 .SS "#define XNextEvent   \fBXNextEventSrc\fP"
 
 .SS "#define XOpenDisplay   \fBXOpenDisplaySrc\fP"
+
+.SS "#define XOpenIM   \fBXOpenIMSrc\fP"
 
 .SS "#define XPeekEvent   \fBXPeekEventSrc\fP"
 
@@ -1430,17 +1734,51 @@ XDL.h
 
 .SS "#define XrmGetStringDatabase   \fBXrmGetStringDatabaseSrc\fP"
 
+.SS "#define XrmUniqueQuark   \fBXrmUniqueQuarkSrc\fP"
+
+.SS "#define XRRAllocGamma   \fBXRRAllocGammaSrc\fP"
+
+.SS "#define XRRConfigCurrentRate   \fBXRRConfigCurrentRateSrc\fP"
+
 .SS "#define XRRFreeCrtcInfo   \fBXRRFreeCrtcInfoSrc\fP"
 
+.SS "#define XRRFreeGamma   \fBXRRFreeGammaSrc\fP"
+
+.SS "#define XRRFreeOutputInfo   \fBXRRFreeOutputInfoSrc\fP"
+
+.SS "#define XRRFreeScreenConfigInfo   \fBXRRFreeScreenConfigInfoSrc\fP"
+
+.SS "#define XRRFreeScreenConfigInfo   \fBXRRFreeScreenConfigInfoSrc\fP"
+
 .SS "#define XRRFreeScreenResources   \fBXRRFreeScreenResourcesSrc\fP"
+
+.SS "#define XRRGetCrtcGamma   \fBXRRGetCrtcGammaSrc\fP"
+
+.SS "#define XRRGetCrtcGammaSize   \fBXRRGetCrtcGammaSizeSrc\fP"
 
 .SS "#define XRRGetCrtcInfo   \fBXRRGetCrtcInfoSrc\fP"
 
 .SS "#define XRRGetOutputInfo   \fBXRRGetOutputInfoSrc\fP"
 
+.SS "#define XRRGetOutputPrimary   \fBXRRGetOutputPrimarySrc\fP"
+
+.SS "#define XRRGetScreenInfo   \fBXRRGetScreenInfoSrc\fP"
+
 .SS "#define XRRGetScreenResources   \fBXRRGetScreenResourcesSrc\fP"
 
 .SS "#define XRRGetScreenResourcesCurrent   \fBXRRGetScreenResourcesCurrentSrc\fP"
+
+.SS "#define XRRQueryExtension   \fBXRRQueryExtensionSrc\fP"
+
+.SS "#define XRRQueryVersion   \fBXRRQueryVersionSrc\fP"
+
+.SS "#define XRRSelectInput   \fBXRRSelectInputSrc\fP"
+
+.SS "#define XRRSetCrtcConfig   \fBXRRSetCrtcConfigSrc\fP"
+
+.SS "#define XRRSetCrtcGamma   \fBXRRSetCrtcGammaSrc\fP"
+
+.SS "#define XRRSetScreenConfig   \fBXRRSetScreenConfigSrc\fP"
 
 .SS "#define XSaveContext   \fBXSaveContextSrc\fP"
 
@@ -1463,6 +1801,10 @@ XDL.h
 .SS "#define XSetScreenSaver   \fBXSetScreenSaverSrc\fP"
 
 .SS "#define XSetSelectionOwner   \fBXSetSelectionOwnerSrc\fP"
+
+.SS "#define XSetWindowBackground   \fBXSetWindowBackgroundSrc\fP"
+
+.SS "#define XSetWindowBackgroundPixmap   \fBXSetWindowBackgroundPixmapSrc\fP"
 
 .SS "#define XSetWMHints   \fBXSetWMHintsSrc\fP"
 
@@ -1488,7 +1830,13 @@ XDL.h
 
 .SS "#define XUnmapWindow   \fBXUnmapWindowSrc\fP"
 
+.SS "#define XUnregisterIMInstantiateCallback   \fBXUnregisterIMInstantiateCallbackSrc\fP"
+
 .SS "#define XUnsetICFocus   \fBXUnsetICFocusSrc\fP"
+
+.SS "#define Xutf8LookupString   \fBXutf8LookupStringSrc\fP"
+
+.SS "#define Xutf8SetWMProperties   \fBXutf8SetWMPropertiesSrc\fP"
 
 .SS "#define XVisualIDFromVisual   \fBXVisualIDFromVisualSrc\fP"
 
@@ -1504,19 +1852,25 @@ XDL.h
 
 .SS "typedef GLXContext(* PFN_glXCreateContext) (Display *, XVisualInfo *, GLXContext, Bool)"
 
+.SS "typedef GLXWindow(* PFN_glXCreateWindow) (Display *, GLXFBConfig, Window, const int *)"
+
 .SS "typedef void(* PFN_glXDestroyContext) (Display *dpy, GLXContext ctx)"
+
+.SS "typedef void(* PFN_glXDestroyWindow) (Display *, GLXWindow)"
 
 .SS "typedef GLXContext(* PFN_glXGetCurrentContext) (void)"
 
 .SS "typedef PFNGLXGETFBCONFIGATTRIBPROC \fBPFN_glXGetFBConfigAttrib\fP"
 
-.SS "typedef void *(* PFN_glXGetProcAddress) (const GLubyte *procname)"
+.SS "typedef __GLXextFuncPtr(* PFN_glXGetProcAddress) (const GLubyte *procname)"
 
 .SS "typedef __GLXextFuncPtr(* PFN_glXGetProcAddressARB) (const GLubyte *)"
 
 .SS "typedef PFNGLXGETVISUALFROMFBCONFIGPROC \fBPFN_glXGetVisualFromFBConfig\fP"
 
 .SS "typedef Bool(* PFN_glXMakeCurrent) (Display *, GLXDrawable, GLXContext)"
+
+.SS "typedef const char *(* PFN_glXQueryExtensionsString) (Display *dpy, int screen)"
 
 .SS "typedef void(* PFN_glXSwapBuffers) (Display *, GLXDrawable)"
 
@@ -1535,6 +1889,8 @@ XDL.h
 .SS "typedef Bool(* PFN_XCheckIfEvent) (Display *, XEvent *, Bool(*)(Display *, XEvent *, XPointer), XPointer)"
 
 .SS "typedef Bool(* PFN_XCheckTypedWindowEvent) (Display *, Window, int, XEvent *)"
+
+.SS "typedef int(* PFN_XClearWindow) (Display *, Window)"
 
 .SS "typedef int(* PFN_XCloseDisplay) (Display *)"
 
@@ -1561,6 +1917,8 @@ XDL.h
 .SS "typedef Window(* PFN_XCreateWindow) (Display *, Window, int, int, unsigned int, unsigned int, unsigned int, int, unsigned int, Visual *, unsigned long, XSetWindowAttributes *)"
 
 .SS "typedef Window(* PFN_XDefaultRootWindow) (Display *)"
+
+.SS "typedef int(* PFN_XDefaultScreen) (Display *)"
 
 .SS "typedef int(* PFN_XDefineCursor) (Display *, Window, Cursor)"
 
@@ -1630,6 +1988,8 @@ XDL.h
 
 .SS "typedef int(* PFN_XGetWindowProperty) (Display *, Window, Atom, long, long, Bool, Atom, Atom *, int *, unsigned long *, unsigned long *, unsigned char **)"
 
+.SS "typedef XWMHints *(* PFN_XGetWMHints) (Display *, Window)"
+
 .SS "typedef Status(* PFN_XGetWMNormalHints) (Display *, Window, XSizeHints *, long *)"
 
 .SS "typedef int(* PFN_XGrabPointer) (Display *, Window, Bool, unsigned int, int, int, Window, Cursor, Time)"
@@ -1646,11 +2006,13 @@ XDL.h
 
 .SS "typedef void(* PFN_XkbFreeNames) (XkbDescPtr, unsigned int, Bool)"
 
+.SS "typedef XkbDescPtr(* PFN_XkbGetKeyboardByName) (Display *, unsigned int, XkbComponentNamesPtr, unsigned int, unsigned int, Bool)"
+
 .SS "typedef XkbDescPtr(* PFN_XkbGetMap) (Display *, unsigned int, unsigned int)"
 
 .SS "typedef Status(* PFN_XkbGetNames) (Display *, unsigned int, XkbDescPtr)"
 
-.SS "typedef Bool(* PFN_XkbGetState)(Display *, unsigned int, XkbStatePtr)"
+.SS "typedef Status(* PFN_XkbGetState) (Display *, unsigned int, XkbStatePtr)"
 
 .SS "typedef KeySym(* PFN_XkbKeycodeToKeysym) (Display *, KeyCode, int, int)"
 
@@ -1680,6 +2042,8 @@ XDL.h
 
 .SS "typedef Display *(* PFN_XOpenDisplay) (const char *)"
 
+.SS "typedef XIM(* PFN_XOpenIM) (Display *, XrmDatabase *, char *, char *)"
+
 .SS "typedef int(* PFN_XPeekEvent) (Display *, XEvent *)"
 
 .SS "typedef int(* PFN_XPending) (Display *)"
@@ -1706,17 +2070,49 @@ XDL.h
 
 .SS "typedef XrmDatabase(* PFN_XrmGetStringDatabase) (const char *data)"
 
+.SS "typedef XrmQuark(* PFN_XrmUniqueQuark) (void)"
+
+.SS "typedef XRRCrtcGamma *(* PFN_XRRAllocGamma) (int)"
+
+.SS "typedef short(* PFN_XRRConfigCurrentRate) (XRRScreenConfiguration *)"
+
 .SS "typedef void(* PFN_XRRFreeCrtcInfo) (XRRCrtcInfo *crtc_info)"
 
+.SS "typedef void(* PFN_XRRFreeGamma) (XRRCrtcGamma *)"
+
+.SS "typedef void(* PFN_XRRFreeOutputInfo) (XRROutputInfo *)"
+
+.SS "typedef void(* PFN_XRRFreeScreenConfigInfo) (XRRScreenConfiguration *)"
+
 .SS "typedef void(* PFN_XRRFreeScreenResources) (XRRScreenResources *resources)"
+
+.SS "typedef XRRCrtcGamma *(* PFN_XRRGetCrtcGamma) (Display *, RRCrtc)"
+
+.SS "typedef int(* PFN_XRRGetCrtcGammaSize) (Display *, RRCrtc)"
 
 .SS "typedef XRRCrtcInfo *(* PFN_XRRGetCrtcInfo) (Display *display, XRRScreenResources *resources, RRCrtc crtc)"
 
 .SS "typedef XRROutputInfo *(* PFN_XRRGetOutputInfo) (Display *display, XRRScreenResources *resources, RROutput output)"
 
+.SS "typedef RROutput(* PFN_XRRGetOutputPrimary) (Display *, Window)"
+
+.SS "typedef XRRScreenConfiguration *(* PFN_XRRGetScreenInfo) (Display *, Window)"
+
 .SS "typedef XRRScreenResources *(* PFN_XRRGetScreenResources) (Display *display, Window window)"
 
 .SS "typedef XRRScreenResources *(* PFN_XRRGetScreenResourcesCurrent) (Display *display, Window window)"
+
+.SS "typedef Bool(* PFN_XRRQueryExtension) (Display *, int *, int *)"
+
+.SS "typedef Status(* PFN_XRRQueryVersion) (Display *, int *, int *)"
+
+.SS "typedef void(* PFN_XRRSelectInput) (Display *, Window, int)"
+
+.SS "typedef Status(* PFN_XRRSetCrtcConfig) (Display *, XRRScreenResources *, RRCrtc, Time, int, int, RRMode, Rotation, RROutput *, int)"
+
+.SS "typedef void(* PFN_XRRSetCrtcGamma) (Display *, RRCrtc, XRRCrtcGamma *)"
+
+.SS "typedef Status(* PFN_XRRSetScreenConfig) (Display *dpy, XRRScreenConfiguration *config, Drawable draw, int size_index, Rotation rotation, Time timestamp)"
 
 .SS "typedef int(* PFN_XSaveContext) (Display *, XID, XContext, const char *)"
 
@@ -1739,6 +2135,10 @@ XDL.h
 .SS "typedef int(* PFN_XSetScreenSaver) (Display *, int, int, int, int)"
 
 .SS "typedef int(* PFN_XSetSelectionOwner) (Display *, Atom, Window, Time)"
+
+.SS "typedef void(* PFN_XSetWindowBackground) (Display *, Window, unsigned long)"
+
+.SS "typedef void(* PFN_XSetWindowBackgroundPixmap) (Display *, Window, Pixmap)"
 
 .SS "typedef int(* PFN_XSetWMHints) (Display *, Window, XWMHints *)"
 
@@ -1764,7 +2164,13 @@ XDL.h
 
 .SS "typedef int(* PFN_XUnmapWindow) (Display *, Window)"
 
+.SS "typedef Bool(* PFN_XUnregisterIMInstantiateCallback) (Display *, void *, char *, char *, XIDProc, XPointer)"
+
 .SS "typedef void(* PFN_XUnsetICFocus) (XIC)"
+
+.SS "typedef int(* PFN_Xutf8LookupString) (XIC, XKeyPressedEvent *, char *, int, KeySym *, Status *)"
+
+.SS "typedef void(* PFN_Xutf8SetWMProperties) (Display *, Window, const char *, const char *, char **, int, XSizeHints *, XWMHints *, XClassHint *)"
 
 .SS "typedef VisualID(* PFN_XVisualIDFromVisual) (Visual *)"
 
@@ -1786,7 +2192,11 @@ XDL.h
 
 .SS "\fBPFN_glXCreateContext\fP glXCreateContextSrc"
 
+.SS "\fBPFN_glXCreateWindow\fP glXCreateWindowSrc"
+
 .SS "\fBPFN_glXDestroyContext\fP glXDestroyContextSrc"
+
+.SS "\fBPFN_glXDestroyWindow\fP glXDestroyWindowSrc"
 
 .SS "\fBPFN_glXGetCurrentContext\fP glXGetCurrentContextSrc"
 
@@ -1799,6 +2209,8 @@ XDL.h
 .SS "\fBPFN_glXGetVisualFromFBConfig\fP glXGetVisualFromFBConfigSrc"
 
 .SS "\fBPFN_glXMakeCurrent\fP glXMakeCurrentSrc"
+
+.SS "\fBPFN_glXQueryExtensionsString\fP glXQueryExtensionsStringSrc"
 
 .SS "\fBPFN_glXSwapBuffers\fP glXSwapBuffersSrc"
 
@@ -1817,6 +2229,8 @@ XDL.h
 .SS "\fBPFN_XCheckIfEvent\fP XCheckIfEventSrc"
 
 .SS "\fBPFN_XCheckTypedWindowEvent\fP XCheckTypedWindowEventSrc"
+
+.SS "\fBPFN_XClearWindow\fP XClearWindowSrc"
 
 .SS "\fBPFN_XCloseDisplay\fP XCloseDisplaySrc"
 
@@ -1843,6 +2257,8 @@ XDL.h
 .SS "\fBPFN_XCreateWindow\fP XCreateWindowSrc"
 
 .SS "\fBPFN_XDefaultRootWindow\fP XDefaultRootWindowSrc"
+
+.SS "\fBPFN_XDefaultScreen\fP XDefaultScreenSrc"
 
 .SS "\fBPFN_XDefineCursor\fP XDefineCursorSrc"
 
@@ -1910,6 +2326,8 @@ XDL.h
 
 .SS "\fBPFN_XGetWindowProperty\fP XGetWindowPropertySrc"
 
+.SS "\fBPFN_XGetWMHints\fP XGetWMHintsSrc"
+
 .SS "\fBPFN_XGetWMNormalHints\fP XGetWMNormalHintsSrc"
 
 .SS "\fBPFN_XGrabPointer\fP XGrabPointerSrc"
@@ -1921,6 +2339,14 @@ XDL.h
 .SS "\fBPFN_XInitThreads\fP XInitThreadsSrc"
 
 .SS "\fBPFN_XInternAtom\fP XInternAtomSrc"
+
+.SS "\fBPFN_XkbFreeKeyboard\fP XkbFreeKeyboardSrc"
+
+.SS "\fBPFN_XkbGetKeyboardByName\fP XkbGetKeyboardByNameSrc"
+
+.SS "\fBPFN_XkbGetMap\fP XkbGetMapSrc"
+
+.SS "\fBPFN_XkbGetNames\fP XkbGetNamesSrc"
 
 .SS "\fBPFN_XkbGetState\fP XkbGetStateSrc"
 
@@ -1945,6 +2371,8 @@ XDL.h
 .SS "\fBPFN_XNextEvent\fP XNextEventSrc"
 
 .SS "\fBPFN_XOpenDisplay\fP XOpenDisplaySrc"
+
+.SS "\fBPFN_XOpenIM\fP XOpenIMSrc"
 
 .SS "\fBPFN_XPeekEvent\fP XPeekEventSrc"
 
@@ -1972,17 +2400,49 @@ XDL.h
 
 .SS "\fBPFN_XrmGetStringDatabase\fP XrmGetStringDatabaseSrc"
 
+.SS "\fBPFN_XrmUniqueQuark\fP XrmUniqueQuarkSrc"
+
+.SS "\fBPFN_XRRAllocGamma\fP XRRAllocGammaSrc"
+
+.SS "\fBPFN_XRRConfigCurrentRate\fP XRRConfigCurrentRateSrc"
+
 .SS "\fBPFN_XRRFreeCrtcInfo\fP XRRFreeCrtcInfoSrc"
 
+.SS "\fBPFN_XRRFreeGamma\fP XRRFreeGammaSrc"
+
+.SS "\fBPFN_XRRFreeOutputInfo\fP XRRFreeOutputInfoSrc"
+
+.SS "\fBPFN_XRRFreeScreenConfigInfo\fP XRRFreeScreenConfigInfoSrc"
+
 .SS "\fBPFN_XRRFreeScreenResources\fP XRRFreeScreenResourcesSrc"
+
+.SS "\fBPFN_XRRGetCrtcGammaSize\fP XRRGetCrtcGammaSizeSrc"
+
+.SS "\fBPFN_XRRGetCrtcGamma\fP XRRGetCrtcGammaSrc"
 
 .SS "\fBPFN_XRRGetCrtcInfo\fP XRRGetCrtcInfoSrc"
 
 .SS "\fBPFN_XRRGetOutputInfo\fP XRRGetOutputInfoSrc"
 
+.SS "\fBPFN_XRRGetOutputPrimary\fP XRRGetOutputPrimarySrc"
+
+.SS "\fBPFN_XRRGetScreenInfo\fP XRRGetScreenInfoSrc"
+
 .SS "\fBPFN_XRRGetScreenResourcesCurrent\fP XRRGetScreenResourcesCurrentSrc"
 
 .SS "\fBPFN_XRRGetScreenResources\fP XRRGetScreenResourcesSrc"
+
+.SS "\fBPFN_XRRQueryExtension\fP XRRQueryExtensionSrc"
+
+.SS "\fBPFN_XRRQueryVersion\fP XRRQueryVersionSrc"
+
+.SS "\fBPFN_XRRSelectInput\fP XRRSelectInputSrc"
+
+.SS "\fBPFN_XRRSetCrtcConfig\fP XRRSetCrtcConfigSrc"
+
+.SS "\fBPFN_XRRSetCrtcGamma\fP XRRSetCrtcGammaSrc"
+
+.SS "\fBPFN_XRRSetScreenConfig\fP XRRSetScreenConfigSrc"
 
 .SS "\fBPFN_XSaveContext\fP XSaveContextSrc"
 
@@ -2005,6 +2465,10 @@ XDL.h
 .SS "\fBPFN_XSetScreenSaver\fP XSetScreenSaverSrc"
 
 .SS "\fBPFN_XSetSelectionOwner\fP XSetSelectionOwnerSrc"
+
+.SS "\fBPFN_XSetWindowBackgroundPixmap\fP XSetWindowBackgroundPixmapSrc"
+
+.SS "\fBPFN_XSetWindowBackground\fP XSetWindowBackgroundSrc"
 
 .SS "\fBPFN_XSetWMHints\fP XSetWMHintsSrc"
 
@@ -2030,7 +2494,13 @@ XDL.h
 
 .SS "\fBPFN_XUnmapWindow\fP XUnmapWindowSrc"
 
+.SS "\fBPFN_XUnregisterIMInstantiateCallback\fP XUnregisterIMInstantiateCallbackSrc"
+
 .SS "\fBPFN_XUnsetICFocus\fP XUnsetICFocusSrc"
+
+.SS "\fBPFN_Xutf8LookupString\fP Xutf8LookupStringSrc"
+
+.SS "\fBPFN_Xutf8SetWMProperties\fP Xutf8SetWMPropertiesSrc"
 
 .SS "\fBPFN_XVisualIDFromVisual\fP XVisualIDFromVisualSrc"
 

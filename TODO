@@ -1,6 +1,4 @@
-- RGFW_event unions (to save memory ?)
-- update wayland support
-
-- look into monitor gamma
-- set gamepad mappings
-- set gamepad rumble
+- wayland drag 'n drop
+- clipboard images
+- IME support
+- RGFW_window_blitSurfaceAt

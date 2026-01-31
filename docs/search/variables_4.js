@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['event_0',['event',['../structRGFW__window.html#af2effd6e3f8e3f7add8a7afd6aeb455a',1,'RGFW_window']]]
+  ['files_0',['files',['../structRGFW__dataDropEvent.html#a62e0a650875a08591ca55f2ca3c58be2',1,'RGFW_dataDropEvent']]]
 ];

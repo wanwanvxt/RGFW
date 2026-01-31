@@ -11,6 +11,7 @@ static GLuint  index_buf[BUFFER_SIZE *  6];
 
 static int width  = 800;
 static int height = 600;
+static float pixelRatio = 1.0f;
 static int buf_idx;
 
 void r_init(void) {
@@ -40,7 +41,6 @@ void r_init(void) {
 static void flush(void) {
   if (buf_idx == 0) { return; }
 
-  glViewport(0, 0, width, height);
   glMatrixMode(GL_PROJECTION);
   glPushMatrix();
   glLoadIdentity();
@@ -161,13 +161,20 @@ int r_get_text_height(void) {
 
 void r_set_clip_rect(mu_Rect rect) {
   flush();
-  glScissor(rect.x, height - (rect.y + rect.h), rect.w, rect.h);
+  /* Scale clip rect by pixel ratio for HiDPI framebuffers */
+  GLsizei sx = (GLsizei)((float)rect.x * pixelRatio);
+  GLsizei sy = (GLsizei)((float)(height - (rect.y + rect.h)) * pixelRatio);
+  GLsizei sw = (GLsizei)((float)rect.w * pixelRatio);
+  GLsizei sh = (GLsizei)((float)rect.h * pixelRatio);
+  glScissor(sx, sy, sw, sh);
 }
 
 
 void r_clear(mu_Color clr) {
   flush();
-  glClearColor(clr.r / 255., clr.g / 255., clr.b / 255., clr.a / 255.);
+
+  glViewport(0, 0, (i32)((float)width * pixelRatio), (i32)((float)height * pixelRatio));
+  glClearColor(clr.r / 255.0f, clr.g / 255.0f, clr.b / 255.0f, clr.a / 255.0f);
   glClear(GL_COLOR_BUFFER_BIT);
 }
 

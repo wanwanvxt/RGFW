@@ -1,8 +1,9 @@
-.TH "RGFW_monitorMode" 3 "Sat Mar 29 2025" "RGFW" \" -*- nroff -*-
+.TH "RGFW_monitorMode" 3 "Sat Jan 31 2026" "RGFW" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-RGFW_monitorMode
+RGFW_monitorMode \- monitor mode data | can be changed by the user (with functions)  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -12,10 +13,13 @@ RGFW_monitorMode
 
 .in +1c
 .ti -1c
-.RI "\fBRGFW_area\fP \fBarea\fP"
+.RI "\fBi32\fP \fBw\fP"
 .br
 .ti -1c
-.RI "\fBu32\fP \fBrefreshRate\fP"
+.RI "\fBi32\fP \fBh\fP"
+.br
+.ti -1c
+.RI "float \fBrefreshRate\fP"
 .br
 .ti -1c
 .RI "\fBu8\fP \fBred\fP"
@@ -26,19 +30,29 @@ RGFW_monitorMode
 .ti -1c
 .RI "\fBu8\fP \fBgreen\fP"
 .br
+.ti -1c
+.RI "void * \fBsrc\fP"
+.br
 .in -1c
+.SH "Detailed Description"
+.PP 
+monitor mode data | can be changed by the user (with functions) 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBRGFW_area\fP RGFW_monitorMode::area"
-monitor workarea size 
 .SS "\fBu8\fP RGFW_monitorMode::blue"
 
 .SS "\fBu8\fP RGFW_monitorMode::green"
-
+sizeof rgb values 
+.SS "\fBi32\fP RGFW_monitorMode::h"
+monitor workarea size 
 .SS "\fBu8\fP RGFW_monitorMode::red"
 
-.SS "\fBu32\fP RGFW_monitorMode::refreshRate"
+.SS "float RGFW_monitorMode::refreshRate"
 monitor refresh rate 
+.SS "void* RGFW_monitorMode::src"
+source API mode 
+.SS "\fBi32\fP RGFW_monitorMode::w"
+
 
 .SH "Author"
 .PP 

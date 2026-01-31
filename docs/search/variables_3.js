@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['droppedfiles_0',['droppedFiles',['../structRGFW__event.html#af29ce01704933b5865407225802c841f',1,'RGFW_event']]],
-  ['droppedfilescount_1',['droppedFilesCount',['../structRGFW__event.html#a5046663caad1f8af75d2cb4bc9a311fc',1,'RGFW_event']]]
+  ['drag_0',['drag',['../unionRGFW__event.html#a15132a2c04d6c7836af2064a985d7792',1,'RGFW_event']]],
+  ['drop_1',['drop',['../unionRGFW__event.html#a3615aced4912b5e2c7c94cbedc0119c5',1,'RGFW_event']]]
 ];
