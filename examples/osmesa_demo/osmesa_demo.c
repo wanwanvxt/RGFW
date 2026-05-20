@@ -19,7 +19,7 @@ int main(void) {
 	RGFW_setClassName("RGFW Basic");
 
     RGFW_window* win = RGFW_createWindow("RGFW Example Window", 500, 500, 500, 500, RGFW_windowAllowDND | RGFW_windowCenter | RGFW_windowNoResize);
-    RGFW_window_setExitKey(win, RGFW_escape);
+    RGFW_window_setExitKey(win, RGFW_keyEscape);
 
     u8* buffer = (u8*)RGFW_ALLOC(500 * 500 * 4);
     RGFW_surface* surface = RGFW_createSurface(buffer, 500, 500, RGFW_formatBGRA8);
@@ -30,9 +30,12 @@ int main(void) {
 
     RGFW_event event;
     while (RGFW_window_shouldClose(win) == RGFW_FALSE) {
-        while (RGFW_window_checkEvent(win, &event) && event.type != RGFW_quit);
+		RGFW_pollEvents();
 
-        glViewport(0, 0, win->w, win->h);
+		i32 w, h;
+		RGFW_window_getSizeInPixels(win, &w, &h);
+
+        glViewport(0, 0, w, h);
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
         glClear(GL_COLOR_BUFFER_BIT);

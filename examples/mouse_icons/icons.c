@@ -8,17 +8,24 @@
 int main(void) {
     int w, h, c;
     RGFW_window* win = RGFW_createWindow("RGFW icons", 0, 0, 600, 400, RGFW_windowCenter | RGFW_windowNoResize);
-    RGFW_window_setExitKey(win, RGFW_escape);
+    RGFW_window_setExitKey(win, RGFW_keyEscape);
 
     unsigned char* icon = stbi_load("logo.png", &w, &h, &c, 3);
-    RGFW_mouse* mouse = RGFW_loadMouse(icon, w, h, RGFW_formatRGB8);
+    RGFW_mouse* mouse = RGFW_createMouse(icon, w, h, RGFW_formatRGB8);
 
     RGFW_window_setMouse(win, mouse);
 
     RGFW_event event;
 
+	RGFW_bool show = RGFW_TRUE;
+
     while (RGFW_window_shouldClose(win) == RGFW_FALSE) {
         RGFW_pollEvents();
+
+		if (RGFW_isKeyPressed(RGFW_keySpace)) {
+			show = !show;
+			RGFW_window_showMouse(win, show);
+		}
     }
 
     RGFW_freeMouse(mouse);

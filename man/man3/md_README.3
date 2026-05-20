@@ -1,4 +1,4 @@
-.TH "md_README" 3 "Sat Jan 31 2026" "RGFW" \" -*- nroff -*-
+.TH "md_README" 3 "Wed May 20 2026" "RGFW" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -6,7 +6,7 @@ md_README \- Riley's General Framework for Windowing
 .PP
 
 .PP
-\fBRGFW\fP is a focused general windowing framework for creating and handling windows, graphics contexts and windowing inputs\&. The API is a mix between GLFW and SDL while maintaining a minminalistic and easy to modify implementation\&.
+\fBRGFW\fP is a focused general windowing framework for creating and handling windows, graphics contexts and windowing inputs with a minimalistic and easy to modify implementation\&.
 .PP
 .PP
 .PP
@@ -18,19 +18,17 @@ md_README \- Riley's General Framework for Windowing
 .SH "Features"
 .PP
 .IP "\(bu" 2
-\fBis\fP an stb-style single headerfile and is very portable
+\fBis\fP primarly written in C99 in mind, but supports C++, Objective-C/C++ and zig-cc compilation
 .IP "\(bu" 2
-\fBis\fP primarly written in C99 in mind
+\fBhas\fP a C89 compatible API
 .IP "\(bu" 2
-\fBhas\fP a C89 compatible API on going changes to make the implementation more C89 friendly
+\fBis\fP a flexible and can be used in multiple ways to best fit your use case
 .IP "\(bu" 2
-\fBis\fP comparable to GLFW or aspects of SDL but it's leading motive is to be a flexible and lightweight windowing library
-.IP "\(bu" 2
-\fBis\fP a very small compared to other libraries
+\fBis\fP small compared to other windowing libraries
 .IP "\(bu" 2
 \fBis\fP a general framework and can be used for games, apps or tools
 .IP "\(bu" 2
-\fBdoes\fP only depend on system API libraries, Winapi, X11, Cocoa, etc \fBNO\fP dependencies
+\fBdoes\fP only depend on system API libraries, Winapi, X11, Cocoa, etc \fBNO\fP external dependencies
 .IP "\(bu" 2
 \fBdoes\fP help you create a window with a graphics context (OpenGL, Vulkan, WebGPU, Metal, or DirectX) and manage the window and its events only with a few function calls
 .IP "\(bu" 2
@@ -42,14 +40,14 @@ md_README \- Riley's General Framework for Windowing
 .IP "\(bu" 2
 \fBdoes\fP include a large number of examples for learning RGFW
 .IP "\(bu" 2
+\fBhas\fP direct support for multiple compilers, gcc, clang, zig-cc, msvc (cl\&.exe) and emscripten c compiler (emcc)\&.
+.IP "\(bu" 2
 does \fBnot\fP handle any rendering for you (other than creating your graphics context)
 .IP "\(bu" 2
 is \fBnot\fP an OpenGL focused library, RGFW can be used with ANY graphics API
-.IP "\(bu" 2
-does \fBnot\fP do anything above the bare minimum in terms of functionality
 .PP
 .PP
-There is a Makefile including for compiling the examples\&. NOTE: \fCWAYLAND=1\fP OR can be defined to compile for wayland\&. \fCWAYLAND_X11=1\fP can be used instead if you want examples to fallback to X11 if a Wayland display is not found\&. This adds \fC#define RGFW_WAYLAND\fP in the implementation (or defines \fCRGFW_WAYLAND\fP AND \fCRGFW_X11\fP)
+There is a Makefile including for compiling the examples\&. NOTE: \fCWAYLAND=1\fP can be defined to compile for wayland\&. \fCWAYLAND_X11=1\fP can be used instead if you want examples to fallback to X11 if a Wayland display is not found\&. This adds \fC#define RGFW_WAYLAND\fP in the implementation (or defines \fCRGFW_WAYLAND\fP AND \fCRGFW_X11\fP)
 .PP
 Included in the framework are helper functions for multiple rendering APIs OpenGL (Native, EGL, GLES), Vulkan, DirectX, \fCMetal\fP and WebGPU, you can also easily blit raw data directly onto the window with the \fCRGFW_surface\fP object using \fCRGFW_window_blitSurface\fP\&.
 .PP
@@ -59,62 +57,49 @@ You must explicitly request these helper functions via, \fC#define RGFW_OPENGL\f
 .SS "a very simple example"
 .PP
 .nf
+/*
+   this example doesn't have any graphics, for a graphics example see the other examples
+   examples/dx11/dx11 -> DirectX
+   examples/metal/metal -> Metal
+   examples/gl11/gl11 -> OpenGL 1\&.1
+   examples/gl33/gl33 -> OpenGL 3\&.3
+   examples/gles2/gles2 -> OpenGL ES 2
+   examples/egl/egl -> egl
+   examples/surface/surface -> software rendering
+*/
+
 #define RGFW_IMPLEMENTATION
-#define RGFW_OPENGL /* if this line is not added, OpenGL functions will not be included */
 #include "RGFW\&.h"
 
 #include <stdio\&.h>
 
-#ifdef RGFW_MACOS
-#include <OpenGL/gl\&.h> /* why does macOS do this */
-#else
-#include <GL/gl\&.h>
-#endif
-
-void keyfunc(RGFW_window* win, RGFW_key key, RGFW_keymod keyMod, RGFW_bool repeat, RGFW_bool pressed) {
-    RGFW_UNUSED(repeat);
-    if (key == RGFW_escape && pressed) {
-        RGFW_window_setShouldClose(win, 1);
+void keyfunc(const RGFW_event* event) {
+    if (event->key\&.value == RGFW_keyEscape) {
+        RGFW_window_setShouldClose(event->common\&.win, 1);
     }
 }
 
 int main() {
-    /* the RGFW_windowOpenGL flag tells it to create an OpenGL context, but you can also create your own with RGFW_window_createContext_OpenGL */
-    RGFW_window* win = RGFW_createWindow("a window", 0, 0, 800, 600, RGFW_windowCenter | RGFW_windowNoResize | RGFW_windowOpenGL);
+    RGFW_window* win = RGFW_createWindow("a window", 0, 0, 800, 600, RGFW_windowCenter | RGFW_windowNoResize);
 
-    RGFW_setKeyCallback(keyfunc); // you can use callbacks like this if you want
+    RGFW_setEventCallback(RGFW_keyPressed, keyfunc); // you can use callbacks like this if you want
+
+    i32 mouseX, mouseY;
 
     while (RGFW_window_shouldClose(win) == RGFW_FALSE) {
         RGFW_event event;
-        while (RGFW_window_checkEvent(win, &event)) {  // or RGFW_pollEvents(); if you only want callbacks
-            // you can either check the current event yourself
-            if (event\&.type == RGFW_quit) break;
-
-            i32 mouseX, mouseY;
+        while (RGFW_window_checkEvent(win, &event)) {  // or RGFW_pollEvents(); if you only want callbacks / state checking
             RGFW_window_getMouse(win, &mouseX, &mouseY);
 
             if (event\&.type == RGFW_mouseButtonPressed && event\&.button\&.value == RGFW_mouseLeft) {
                 printf("You clicked at x: %d, y: %d\n", mouseX, mouseY);
             }
-
-            // or use the existing functions
-            if (RGFW_isMousePressed(RGFW_mouseRight)) {
-                printf("The right mouse button was clicked at x: %d, y: %d\n", mouseX, mouseY);
-            }
         }
 
-        // OpenGL 1\&.1 is used here for a simple example, but you can use any version you want (if you request it first (see gl33/gl33\&.c))
-        glClearColor(1\&.0f, 1\&.0f, 1\&.0f, 1\&.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
-        glBegin(GL_TRIANGLES);
-            glColor3f(1\&.0f, 0\&.0f, 0\&.0f); glVertex2f(-0\&.6f, -0\&.75f);
-            glColor3f(0\&.0f, 1\&.0f, 0\&.0f); glVertex2f(0\&.6f, -0\&.75f);
-            glColor3f(0\&.0f, 0\&.0f, 1\&.0f); glVertex2f(0\&.0f, 0\&.75f);
-        glEnd();
-
-        RGFW_window_swapBuffers_OpenGL(win);
-        glFlush();
+        /* state checking */
+        if (RGFW_isMousePressed(RGFW_mouseRight)) {
+            printf("The right mouse button was clicked at x: %d, y: %d\n", mouseX, mouseY);
+        }
     }
 
     RGFW_window_close(win);
@@ -125,17 +110,14 @@ int main() {
 .PP
 .PP
 .nf
-linux : gcc main\&.c -lX11 -lGL -lXrandr
+linux : gcc main\&.c -lX11 -lGL -lm -lXrandr
 windows : gcc main\&.c -lopengl32 -lgdi32
-macos : gcc main\&.c -framework Cocoa -framework OpenGL
+macos : gcc main\&.c -framework Cocoa
 .fi
 .PP
 .SS "other examples"
 .PP
-You can find more examples [here](examples) or \fCrun it in your browser\fP with emscripten
-.SH "Supported GUI libraries"
-.PP
-A list of GUI libraries that can be used with RGFW can be found on the RGFW wiki \fChere\fP
+You can find more examples [here](examples) or \fCrun them in your browser\fP with emscripten
 .SH "Documentation"
 .PP
 There is a lot of in-header-documentation, but more documentation can be found at https://colleagueriley.github.io/RGFW/docs/index.html If you wish to build the documentation yourself, there is also a Doxygen file attached\&.
@@ -154,8 +136,6 @@ discord : ColleagueRiley
 .IP "\(bu" 2
 discord server : https://discord.gg/pXVNgVVbvh
 .IP "\(bu" 2
-matrix space: https://matrix.to/#/#rsgl-is-sili:matrix.org
-.IP "\(bu" 2
 BlueSky https://bsky.app/profile/colleagueriley.bsky.social
 .IP "\(bu" 2
 Twitter/X : https://x.com/ColleagueRiley
@@ -163,9 +143,6 @@ Twitter/X : https://x.com/ColleagueRiley
 .SH "Supporting RGFW"
 .PP
 There is a RGFW wiki page about things you can do if you want to support the development of RGFW \fChere\fP\&.
-.SH "RGFW vs GLFW"
-.PP
-A comparison of RGFW and GLFW can be found at \fCon the wiki\fP
 .SH "License"
 .PP
 RGFW uses the Zlib/libPNG license, this means you can use RGFW freely as long as you do not claim you wrote this software, mark altered versions as such and keep the license included with the header\&.

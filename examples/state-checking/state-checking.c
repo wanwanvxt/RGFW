@@ -29,15 +29,16 @@ typedef struct {
     RGFW_bool drop;
     RGFW_bool drag;
     i32 dragX, dragY;
-    const char** data;
-    size_t count;
+    RGFW_dataDropNode* dataDrop;
 } WindowState;
 
 int main(void) {
     RGFW_window* win = RGFW_createWindow("RGFW State Checking", 500, 500, 500, 500, RGFW_windowCenter | RGFW_windowAllowDND);
-    RGFW_window_setExitKey(win, RGFW_escape);
+    RGFW_window_setExitKey(win, RGFW_keyEscape);
 
-    WindowState prevState;
+	RGFW_setBuildDND(RGFW_TRUE);
+
+	WindowState prevState;
     memset(&prevState, 0, sizeof(WindowState));
 
     while (RGFW_window_shouldClose(win) == 0) {
@@ -50,10 +51,10 @@ int main(void) {
             RGFW_window_isMaximized(win),
             0, 0,
             0, 0,
-            RGFW_window_isKeyPressed(win, RGFW_escape),
-            RGFW_window_isKeyDown(win, RGFW_space),
-            RGFW_window_isKeyReleased(win, RGFW_enter),
-            RGFW_window_isKeyPressed(win, RGFW_controlL),
+            RGFW_window_isKeyPressed(win, RGFW_keyEscape),
+            RGFW_window_isKeyDown(win, RGFW_keySpace),
+            RGFW_window_isKeyReleased(win, RGFW_keyEnter),
+            RGFW_window_isKeyPressed(win, RGFW_keyControlL),
             RGFW_window_isMousePressed(win, RGFW_mouseLeft),
             RGFW_window_isMouseDown(win, RGFW_mouseRight),
             RGFW_window_isMouseReleased(win, RGFW_mouseMiddle),
@@ -65,7 +66,7 @@ int main(void) {
             RGFW_window_isMouseInside(win),
             RGFW_window_didDataDrop(win),
             RGFW_window_isDataDragging(win),
-            0, 0, NULL, 0,
+            0, 0, NULL,
         };
 
 		RGFW_window_getPosition(win, &currState.posX, &currState.posY);
@@ -75,7 +76,7 @@ int main(void) {
 		RGFW_getMouseScroll(&currState.scrollX, &currState.scrollY);
 
         RGFW_window_getDataDrag(win, &currState.dragX, &currState.dragY);
-        RGFW_window_getDataDrop(win, &currState.data, &currState.count);
+		currState.dataDrop = RGFW_window_getDataDrop(win);
 
         if (currState.isInFocus != prevState.isInFocus) {
             printf("Is in focus: %s\n", currState.isInFocus ? "Yes" : "No");
@@ -119,10 +120,10 @@ int main(void) {
         if (currState.scrollX != prevState.scrollX || currState.scrollY != prevState.scrollY) {
             printf("Mouse scrolling (%f %f)\n", (double)currState.scrollX, (double)currState.scrollY);
         }
-        if (RGFW_isKeyDown(RGFW_controlL) && (currState.mouseX != prevState.mouseX || currState.mouseY != prevState.mouseY)) {
+        if (RGFW_isKeyDown(RGFW_keyControlL) && (currState.mouseX != prevState.mouseX || currState.mouseY != prevState.mouseY)) {
             printf("Mouse position in window: (%i, %i)\n", currState.mouseX, currState.mouseY);
         }
-        if (RGFW_isKeyDown(RGFW_controlL) && (currState.vectorX != prevState.vectorX || currState.vectorY != prevState.vectorY)) {
+        if (RGFW_isKeyDown(RGFW_keyControlL) && (currState.vectorX != prevState.vectorX || currState.vectorY != prevState.vectorY)) {
             printf("Mouse vector: (%f, %f)\n", (double)currState.vectorX, (double)currState.vectorY);
         }
         if (currState.didMouseLeave != prevState.didMouseLeave) {
@@ -144,10 +145,10 @@ int main(void) {
         if (currState.drop != prevState.drop) {
             if (currState.drop) {
                 printf("Data dropped :\n");
-                for (size_t i = 0; i < currState.count; i++) {
-                    printf("    file : %s\n", currState.data[i]);
+                for (RGFW_dataDropNode* node = currState.dataDrop; node; node = node->next) {
+                    printf("    file : %s\n", node->data);
                 }
-            } else printf("No data has ben dropped\n");
+            } else printf("No data has been dropped\n");
         }
 
         memcpy(&prevState, &currState, sizeof(WindowState));

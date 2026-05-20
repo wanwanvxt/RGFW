@@ -1,4 +1,4 @@
-.TH "Supporting" 3 "Sat Jan 31 2026" "RGFW" \" -*- nroff -*-
+.TH "Supporting" 3 "Wed May 20 2026" "RGFW" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,6 +21,10 @@ Supporting \- Supporting
 .RI "\fBRGFWDEF\fP void \fBRGFW_eventQueuePush\fP (const \fBRGFW_event\fP *event)"
 .br
 .RI "Pushes an event into the standard RGFW event queue\&. "
+.ti -1c
+.RI "\fBRGFWDEF\fP void \fBRGFW_eventQueuePushAndCall\fP (const \fBRGFW_event\fP *event)"
+.br
+.RI "Pushes an event into the standard RGFW event queue and call the callback\&. "
 .ti -1c
 .RI "\fBRGFWDEF\fP void \fBRGFW_eventQueueFlush\fP (void)"
 .br
@@ -52,11 +56,11 @@ Supporting \- Supporting
 .ti -1c
 .RI "\fBRGFWDEF\fP \fBi32\fP \fBRGFW_init\fP (void)"
 .br
-.RI "Initializes the RGFW library\&. "
+.RI "Initializes the RGFW library internally\&. "
 .ti -1c
 .RI "\fBRGFWDEF\fP void \fBRGFW_deinit\fP (void)"
 .br
-.RI "Deinitializes the RGFW library\&. "
+.RI "Deinitializes the current instance of the RGFW library\&. "
 .ti -1c
 .RI "\fBRGFWDEF\fP \fBi32\fP \fBRGFW_init_ptr\fP (\fBRGFW_info\fP *info)"
 .br
@@ -102,7 +106,7 @@ The corresponding RGFW keycode\&.
 .SS "\fBRGFWDEF\fP void RGFW_deinit (void)"
 
 .PP
-Deinitializes the RGFW library\&. ! 
+Deinitializes the current instance of the RGFW library\&. ! 
 .PP
 \fBNote\fP
 .RS 4
@@ -147,6 +151,17 @@ Pushes an event into the standard RGFW event queue\&. !
 .RE
 .PP
 
+.SS "\fBRGFWDEF\fP void RGFW_eventQueuePushAndCall (const \fBRGFW_event\fP * event)"
+
+.PP
+Pushes an event into the standard RGFW event queue and call the callback\&. ! 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP A pointer to the \fBRGFW_event\fP to be added to the queue\&. 
+.RE
+.PP
+
 .SS "\fBRGFWDEF\fP \fBRGFW_info\fP * RGFW_getInfo (void)"
 
 .PP
@@ -172,11 +187,11 @@ A pointer to the current root RGFW_window\&.
 .SS "\fBRGFWDEF\fP \fBi32\fP RGFW_init (void)"
 
 .PP
-Initializes the RGFW library\&. ! 
+Initializes the RGFW library internally\&. ! 
 .PP
 \fBReturns\fP
 .RS 4
-0 on success, or a negative error code on failure\&. 
+0 on success, a negative number error error on failure\&. 
 .RE
 .PP
 \fBNote\fP
@@ -197,7 +212,7 @@ Initializes RGFW using a user-provided RGFW_info structure\&. !
 .PP
 \fBReturns\fP
 .RS 4
-0 on success, or a negative error code on failure\&. 
+0 on success, a negative number error error on failure and a positive number for a warning\&. 
 .RE
 .PP
 

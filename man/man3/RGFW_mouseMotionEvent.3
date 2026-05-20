@@ -1,8 +1,8 @@
-.TH "RGFW_mousePosEvent" 3 "Sat Jan 31 2026" "RGFW" \" -*- nroff -*-
+.TH "RGFW_mouseMotionEvent" 3 "Wed May 20 2026" "RGFW" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-RGFW_mousePosEvent \- event data for any mouse position event (RGFW_mousePosChanged)  
+RGFW_mouseMotionEvent \- event data for a mouse position event (RGFW_mouseMotion)  
 
 .SH SYNOPSIS
 .br
@@ -25,28 +25,23 @@ RGFW_mousePosEvent \- event data for any mouse position event (RGFW_mousePosChan
 .RI "\fBi32\fP \fBy\fP"
 .br
 .ti -1c
-.RI "float \fBvecX\fP"
-.br
-.ti -1c
-.RI "float \fBvecY\fP"
+.RI "\fBRGFW_bool\fP \fBinWindow\fP"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
-event data for any mouse position event (RGFW_mousePosChanged) 
+event data for a mouse position event (RGFW_mouseMotion) 
 .SH "Member Data Documentation"
 .PP 
-.SS "RGFW_eventType RGFW_mousePosEvent::type"
+.SS "\fBRGFW_bool\fP RGFW_mouseMotionEvent::inWindow"
+if the mouse is in the window or not 
+.SS "RGFW_eventType RGFW_mouseMotionEvent::type"
 which event has been sent? 
-.SS "float RGFW_mousePosEvent::vecX"
-
-.SS "float RGFW_mousePosEvent::vecY"
-raw mouse movement 
-.SS "\fBRGFW_window\fP* RGFW_mousePosEvent::win"
+.SS "\fBRGFW_window\fP* RGFW_mouseMotionEvent::win"
 the window this event applies to (for event queue events) 
-.SS "\fBi32\fP RGFW_mousePosEvent::x"
+.SS "\fBi32\fP RGFW_mouseMotionEvent::x"
 
-.SS "\fBi32\fP RGFW_mousePosEvent::y"
+.SS "\fBi32\fP RGFW_mouseMotionEvent::y"
 mouse x, y of event (or drop point) 
 
 .SH "Author"

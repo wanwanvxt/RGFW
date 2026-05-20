@@ -1,8 +1,8 @@
-.TH "RGFW_mouseScrollEvent" 3 "Sat Jan 31 2026" "RGFW" \" -*- nroff -*-
+.TH "RGFW_windowFocusEvent" 3 "Wed May 20 2026" "RGFW" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-RGFW_mouseScrollEvent \- event data for any mouse scroll event  
+RGFW_windowFocusEvent \- event data for all focus events  
 
 .SH SYNOPSIS
 .br
@@ -19,25 +19,20 @@ RGFW_mouseScrollEvent \- event data for any mouse scroll event
 .RI "\fBRGFW_window\fP * \fBwin\fP"
 .br
 .ti -1c
-.RI "float \fBx\fP"
-.br
-.ti -1c
-.RI "float \fBy\fP"
+.RI "\fBRGFW_bool\fP \fBstate\fP"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
-event data for any mouse scroll event 
+event data for all focus events 
 .SH "Member Data Documentation"
 .PP 
-.SS "RGFW_eventType RGFW_mouseScrollEvent::type"
+.SS "\fBRGFW_bool\fP RGFW_windowFocusEvent::state"
+wether or not the window is in focus or not 
+.SS "RGFW_eventType RGFW_windowFocusEvent::type"
 which event has been sent? 
-.SS "\fBRGFW_window\fP* RGFW_mouseScrollEvent::win"
+.SS "\fBRGFW_window\fP* RGFW_windowFocusEvent::win"
 the window this event applies to (for event queue events) 
-.SS "float RGFW_mouseScrollEvent::x"
-
-.SS "float RGFW_mouseScrollEvent::y"
-the raw mouse scroll value 
 
 .SH "Author"
 .PP 
